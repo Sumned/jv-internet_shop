@@ -3,7 +3,6 @@ package mate.academy.internetshop;
 import java.math.BigDecimal;
 import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.lib.Injector;
-import mate.academy.internetshop.model.Order;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.model.User;
@@ -19,9 +18,6 @@ public class Main {
     public static void main(String[] args) {
         ProductService productService = (ProductService) injector.getInstance(ProductService.class);
         UserService userService = (UserService) injector.getInstance(UserService.class);
-        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
-        ShoppingCartService shoppingCartService = (ShoppingCartService)
-                injector.getInstance(ShoppingCartService.class);
         for (int i = 0; i < 10; i++) {
             productService.create(new Product("Item" + i, new BigDecimal(i)));
             userService.create(new User("User" + i, "user" + i + "@mail.com"));
@@ -53,6 +49,8 @@ public class Main {
             System.out.println(i);
         }
         ShoppingCart shoppingCart1 = new ShoppingCart(Storage.products, user1);
+        ShoppingCartService shoppingCartService = (ShoppingCartService)
+                injector.getInstance(ShoppingCartService.class);
         shoppingCartService.addProduct(shoppingCart1, item1);
         ShoppingCart shoppingCart2 = new ShoppingCart(Storage.products, user1);
         shoppingCartService.addProduct(shoppingCart2, item1);
@@ -61,6 +59,7 @@ public class Main {
         shoppingCartService.deleteProduct(shoppingCart1, item1);
         shoppingCartService.clear(shoppingCart2);
         System.out.println(shoppingCartService.getAllProducts(shoppingCart1));
+        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
         orderService.completeOrder(Storage.products, user1);
         System.out.println(orderService.getAll());
         System.out.println(orderService.getUserOrders(user1));
