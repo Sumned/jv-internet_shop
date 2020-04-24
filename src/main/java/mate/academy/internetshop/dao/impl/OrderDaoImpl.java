@@ -22,7 +22,7 @@ public class OrderDaoImpl implements OrderDao {
         return Storage
                 .orders
                 .stream()
-                .filter(order -> order.getUser().equals(user))
+                .filter(order -> order.getUser().getId().equals(user.getId()))
                 .collect(Collectors.toList());
     }
 
@@ -42,6 +42,6 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        return Storage.orders.removeIf(order -> order.getId().equals(id));
     }
 }

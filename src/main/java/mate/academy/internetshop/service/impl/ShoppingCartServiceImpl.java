@@ -1,17 +1,22 @@
 package mate.academy.internetshop.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import mate.academy.internetshop.dao.ShoppingCartDao;
+import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.lib.Service;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.service.ShoppingCartService;
+import mate.academy.internetshop.service.UserService;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
     private ShoppingCartDao shoppingCartDao;
+    @Inject
+    private UserService userService;
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
@@ -22,11 +27,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
-        if (shoppingCart.getProducts().remove(product)) {
+        boolean result  = shoppingCart.getProducts().remove(product);
+        if (result) {
             shoppingCartDao.update(shoppingCart);
-            return true;
         }
-        return false;
+        return result;
     }
 
     @Override
@@ -40,7 +45,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return shoppingCartDao.getAll().stream()
                 .filter(shoppingCart -> shoppingCart.getUser().getId().equals(userId))
                 .findFirst()
-                .get();
+                .orElseGet(() -> shoppingCartDao.create(
+                        new ShoppingCart(Storage.products, userService.get(userId))));
     }
 
     @Override

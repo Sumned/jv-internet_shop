@@ -1,8 +1,11 @@
 package mate.academy.internetshop;
 
 import java.math.BigDecimal;
+import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.lib.Injector;
+import mate.academy.internetshop.model.Order;
 import mate.academy.internetshop.model.Product;
+import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.OrderService;
 import mate.academy.internetshop.service.ProductService;
@@ -49,5 +52,19 @@ public class Main {
         for (User i : userService.getAll()) {
             System.out.println(i);
         }
+        ShoppingCart shoppingCart1 = new ShoppingCart(Storage.products, user1);
+        shoppingCartService.addProduct(shoppingCart1, item1);
+        ShoppingCart shoppingCart2 = new ShoppingCart(Storage.products, user1);
+        shoppingCartService.addProduct(shoppingCart2, item1);
+        System.out.println(shoppingCartService.getAllProducts(shoppingCart1));
+        System.out.println(shoppingCartService.getAllProducts(shoppingCart2));
+        shoppingCartService.deleteProduct(shoppingCart1, item1);
+        shoppingCartService.clear(shoppingCart2);
+        System.out.println(shoppingCartService.getAllProducts(shoppingCart1));
+        orderService.completeOrder(Storage.products, user1);
+        System.out.println(orderService.getAll());
+        System.out.println(orderService.getUserOrders(user1));
+        orderService.delete(0L);
+
     }
 }
