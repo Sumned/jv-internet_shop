@@ -11,7 +11,7 @@ import mate.academy.internetshop.service.ProductService;
 public class ProductServiceImpl implements ProductService {
 
     @Inject
-    ProductDao productDao;
+    private ProductDao productDao;
 
     @Override
     public Product create(Product product) {
