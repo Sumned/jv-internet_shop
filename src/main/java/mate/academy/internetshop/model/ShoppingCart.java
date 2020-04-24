@@ -1,16 +1,17 @@
 package mate.academy.internetshop.model;
 
 import java.util.List;
+import mate.academy.internetshop.db.Storage;
 
 public class ShoppingCart {
     private List<Product> products;
     private User user;
     private Long id;
 
-    public ShoppingCart(List<Product> products, User user, Long id) {
+    public ShoppingCart(List<Product> products, User user) {
         this.products = products;
         this.user = user;
-        this.id = id;
+        this.id = Storage.shoppingCartId;
     }
 
     public List<Product> getProducts() {
@@ -35,5 +36,13 @@ public class ShoppingCart {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" + "products="
+                + products + ", user="
+                + user + ", id="
+                + id + '}';
     }
 }
