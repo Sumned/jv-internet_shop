@@ -60,10 +60,5 @@ public class Main {
         shoppingCartService.clear(shoppingCart2);
         System.out.println(shoppingCartService.getAllProducts(shoppingCart1));
         OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
-        orderService.completeOrder(Storage.products, user1);
-        System.out.println(orderService.getAll());
-        System.out.println(orderService.getUserOrders(user1));
-        orderService.delete(0L);
-
     }
 }
