@@ -3,6 +3,7 @@ package mate.academy.internetshop.dao.impl;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import mate.academy.internetshop.dao.OrderDao;
 import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.lib.Dao;
@@ -38,6 +39,14 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> getAll() {
         return Storage.orders;
+    }
+
+    @Override
+    public Order update(Order order) {
+        IntStream.range(0, Storage.orders.size())
+                .filter(ind -> Storage.orders.get(ind).getId().equals(order.getId()))
+                .forEach(ind -> Storage.orders.set(ind, order));
+        return order;
     }
 
     @Override
