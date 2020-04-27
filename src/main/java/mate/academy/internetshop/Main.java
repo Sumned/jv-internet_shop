@@ -12,12 +12,11 @@ import mate.academy.internetshop.service.ShoppingCartService;
 import mate.academy.internetshop.service.UserService;
 
 public class Main {
-
-    private static final Injector injector = Injector.getInstance("mate.academy.internetshop");
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
 
     public static void main(String[] args) {
-        ProductService productService = (ProductService) injector.getInstance(ProductService.class);
-        UserService userService = (UserService) injector.getInstance(UserService.class);
+        ProductService productService = (ProductService) INJECTOR.getInstance(ProductService.class);
+        UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
         for (int i = 0; i < 10; i++) {
             productService.create(new Product("Item" + i, new BigDecimal(i)));
             userService.create(new User("User" + i, "user" + i + "@mail.com"));
@@ -50,7 +49,7 @@ public class Main {
         }
         ShoppingCart shoppingCart1 = new ShoppingCart(Storage.products, user1);
         ShoppingCartService shoppingCartService = (ShoppingCartService)
-                injector.getInstance(ShoppingCartService.class);
+                INJECTOR.getInstance(ShoppingCartService.class);
         shoppingCartService.addProduct(shoppingCart1, item1);
         ShoppingCart shoppingCart2 = new ShoppingCart(Storage.products, user1);
         shoppingCartService.addProduct(shoppingCart2, item1);
@@ -59,6 +58,6 @@ public class Main {
         shoppingCartService.deleteProduct(shoppingCart1, item1);
         shoppingCartService.clear(shoppingCart2);
         System.out.println(shoppingCartService.getAllProducts(shoppingCart1));
-        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
+        OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
     }
 }
