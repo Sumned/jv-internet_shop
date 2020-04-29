@@ -5,12 +5,12 @@ import mate.academy.internetshop.db.Storage;
 public class User {
     private long id;
     private String name;
-    private String email;
+    private String password;
 
-    public User(String name, String email) {
+    public User(String name, String password) {
         this.id = Storage.userId;
         this.name = name;
-        this.email = email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -25,12 +25,12 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -38,6 +38,6 @@ public class User {
         return "User{" + "id=" + id
                 + ", name='" + name
                 + '\'' + ", email='"
-                + email + '\'' + '}';
+                + password + '\'' + '}';
     }
 }
