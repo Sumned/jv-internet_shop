@@ -2,19 +2,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Shopping Cart</title>
+    <title>All products</title>
 </head>
 <body>
-<h1>Shopping Cart page</h1>
+<h1>All products page</h1>
 <table border="1">
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Price</th>
         <th>Delete</th>
     </tr>
-    <jsp:useBean id="Products" scope="request" type="java.util.List"/>
-    <c:forEach var="product" items="${Products}">
+    <jsp:useBean id="allProducts" scope="request" type="java.util.List"/>
+    <c:forEach var="product" items="${allProducts}">
         <tr>
             <td>
                 <c:out value="${product.id}"/>
@@ -26,14 +25,12 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/shoppingCart/delete?id=${product.id}">Delete</a>
+                <a href="${pageContext.request.contextPath}/product/delete?id=${product.getId()}">Delete</a>
             </td>
         </tr>
     </c:forEach>
+    <p><a href="${pageContext.request.contextPath}/addProduct">Add a new products</a></p>
+    <p><a href="${pageContext.request.contextPath}">Back to the main page</a></p>
 </table>
-<form action="${pageContext.request.contextPath}/shoppingCart/completeOrder" method="get">
-    <button type="submit">Complete Order</button>
-</form>
-<p><a href="${pageContext.request.contextPath}">Back to the main page</a></p>
 </body>
 </html>

@@ -29,7 +29,8 @@
             </td>
         </tr>
     </c:forEach>
-    <p><a href="${pageContext.request.contextPath}">Back to the main page</a></p>
 </table>
+<p><a href="${pageContext.request.contextPath}"></a></p>
+<p><a href="${pageContext.request.contextPath}">Back to the main page</a></p>
 </body>
 </html>

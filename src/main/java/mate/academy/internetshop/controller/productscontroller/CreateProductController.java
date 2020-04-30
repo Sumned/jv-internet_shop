@@ -1,4 +1,4 @@
-package mate.academy.internetshop.controller;
+package mate.academy.internetshop.controller.productscontroller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
