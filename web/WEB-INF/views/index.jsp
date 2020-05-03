@@ -5,7 +5,6 @@
   </head>
   <body>
   <h1>Welcome to the shop</h1>
-  <p><a href="${pageContext.request.contextPath}/registration">Registration page</a></p>
   <p><a href="${pageContext.request.contextPath}/injectData">Inject test data</a></p>
   <p><a href="${pageContext.request.contextPath}/users/all">All users list</a></p>
   <p><a href="${pageContext.request.contextPath}/products/all">All products list</a></p>

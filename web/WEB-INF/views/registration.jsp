@@ -19,7 +19,7 @@
 
             <button type="submit">Register</button>
 
-    <p><a href="${pageContext.request.contextPath}">Back to the main page</a></p>
+    <p><a href="${pageContext.request.contextPath}/login">Back to the login page</a></p>
 
 
 </form>

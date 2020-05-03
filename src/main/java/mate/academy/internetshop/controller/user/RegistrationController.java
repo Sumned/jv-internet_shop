@@ -11,7 +11,7 @@ import mate.academy.internetshop.service.UserService;
 
 public class RegistrationController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
-    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+    private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -28,7 +28,7 @@ public class RegistrationController extends HttpServlet {
 
         if (password.equals(passwordRepeat)) {
             userService.create(new User(login, password));
-            resp.sendRedirect(req.getContextPath() + "/");
+            resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Your password and repeat password aren't the same");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
