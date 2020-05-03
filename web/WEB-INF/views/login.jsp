@@ -2,22 +2,27 @@
 <html>
 <head>
     <title>Login</title>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+                integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </head>
 </head>
 <body>
-<h1>Login page</h1>
-<h4 style="color:red">${errorMsg}</h4>
-<form action="${pageContext.request.contextPath}/login" method="post">
-    <h3>Please provide your login </h3>
-    <p><label>
-        <input type="text" name="login">
-    </label></p>
-    <h3>Please provide your password </h3>
-    <p><label>
-        <input type="password" name="password">
-    </label></p>
-    <button type="submit">Login</button>
-</form>
-<h2> Haven't account yet?</h2>
-<p><a href="${pageContext.request.contextPath}/registration">Registration page</a></p>
+<div class="container">
+    <form role="form" action="${pageContext.request.contextPath}/login" method="post">
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input type="text" name="login" class="form-control" id="login" placeholder="Please provide your login">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Please provide your password">
+        </div>
+        <button type="submit" class="btn btn-success">Login</button>
+    </form>
+    <p><a href="${pageContext.request.contextPath}/registration">Haven't account yet?</a></p>
+</div>
 </body>
 </html>
