@@ -18,7 +18,7 @@ public class InjectDataController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/InjectData.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/inject_data.jsp").forward(req, resp);
         for (int i = 0; i < 10; i++) {
             productService.create(new Product("Item" + i, new BigDecimal(10 + i * 3)));
         }

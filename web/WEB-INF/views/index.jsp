@@ -9,12 +9,12 @@
   </head>
   <body>
   <div class="container-fluid">
-    <p><a href="${pageContext.request.contextPath}/injectData">Inject test data</a></p>
+    <p><a href="${pageContext.request.contextPath}/inject_data">Inject test data</a></p>
     <p><a href="${pageContext.request.contextPath}/users/all">All users list</a></p>
     <p><a href="${pageContext.request.contextPath}/products/all">All products list</a></p>
-    <p><a href="${pageContext.request.contextPath}/addProduct">Add a new products</a></p>
-    <p><a href="${pageContext.request.contextPath}/shoppingCart">Shopping cart</a></p>
-    <p><a href="${pageContext.request.contextPath}/orders/all">All orders</a></p>
+    <p><a href="${pageContext.request.contextPath}/products/add">Add a new products</a></p>
+    <p><a href="${pageContext.request.contextPath}/shopping_cart">Shopping cart</a></p>
+    <p><a href="${pageContext.request.contextPath}/orders/user_all">All orders</a></p>
   </div>
   </body>
 </html>

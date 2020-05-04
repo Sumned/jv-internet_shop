@@ -9,28 +9,30 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>All users page</h1>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Delete</th>
-    </tr>
-    <jsp:useBean id="allUsers" scope="request" type="java.util.List"/>
-    <c:forEach var="user" items="${allUsers}">
-        <tr>
-            <td>
-                <c:out value="${user.id}"/>
-            </td>
-            <td>
-                <c:out value="${user.login}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/user/delete?id=${user.id}">Delete</a>
-            </td>
+<div class="container-fluid">
+    <h1>All users page</h1>
+    <table class="table table-sm" border="1">
+        <tr class="table-active">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Delete</th>
         </tr>
-    </c:forEach>
+        <jsp:useBean id="allUsers" scope="request" type="java.util.List"/>
+        <c:forEach var="user" items="${allUsers}">
+            <tr>
+                <td>
+                    <c:out value="${user.id}"/>
+                </td>
+                <td>
+                    <c:out value="${user.login}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/user/delete?id=${user.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
     <p><a href="${pageContext.request.contextPath}/">Back to the main page</a></p>
-</table>
+</div>
 </body>
 </html>

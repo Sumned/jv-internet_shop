@@ -11,6 +11,8 @@
 </head>
 <body>
 <div class="container">
+    <h3>Hello! Please input your user details</h3>
+    <h4 style="color:red">${errorMsg}</h4>
     <form role="form" action="${pageContext.request.contextPath}/login" method="post">
         <div class="form-group">
             <label for="login">Login</label>

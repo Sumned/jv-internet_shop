@@ -27,6 +27,6 @@ public class CompleteOrderController extends HttpServlet {
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
         List<Product> products = shoppingCartService.getAllProducts(shoppingCart);
         orderService.completeOrder(products, shoppingCart.getUser());
-        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+        resp.sendRedirect(req.getContextPath() + "/shopping_cart");
     }
 }
