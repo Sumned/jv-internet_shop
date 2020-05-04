@@ -1,4 +1,4 @@
-package mate.academy.internetshop.controller;
+package mate.academy.internetshop.controller.shoppingcart;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,25 +8,23 @@ import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.service.ProductService;
 import mate.academy.internetshop.service.ShoppingCartService;
-import mate.academy.internetshop.service.UserService;
 
-public class AddProductToShoppingCartController extends HttpServlet {
-    private static final Long USER_ID = 1L;
+public class DeleteProductFromShoppingCartController extends HttpServlet {
+    private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
     private final ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
     private final ProductService productService =
             (ProductService) INJECTOR.getInstance(ProductService.class);
-    private final UserService userService =
-            (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String productId = req.getParameter("id");
         Long id = Long.valueOf(productId);
-        shoppingCartService.addProduct(shoppingCartService.getByUserId(USER_ID),
-                        productService.get(id));
-        resp.sendRedirect(req.getContextPath() + "/products/all");
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        shoppingCartService
+                .deleteProduct(shoppingCartService.getByUserId(userId), productService.get(id));
+        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
     }
 }

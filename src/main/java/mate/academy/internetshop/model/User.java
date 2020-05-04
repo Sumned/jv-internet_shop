@@ -6,11 +6,21 @@ public class User {
     private long id;
     private String name;
     private String password;
+    private String login;
 
-    public User(String name, String password) {
+    public User(String login, String password) {
         this.id = Storage.userId;
-        this.name = name;
         this.password = password;
+        this.login = login;
+        this.name = login;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Long getId() {

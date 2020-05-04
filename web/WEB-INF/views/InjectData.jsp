@@ -5,6 +5,6 @@
 </head>
 <body>
 <h1>DataBase was created</h1>
-<a href="${pageContext.request.contextPath}">Back to the main page</a>
+<a href="${pageContext.request.contextPath}/">Back to the main page</a>
 </body>
 </html>
