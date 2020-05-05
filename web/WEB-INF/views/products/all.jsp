@@ -30,7 +30,7 @@
                     <c:out value="${product.price}"/>
                 </td>
                 <td align="center" width="50">
-                    <button class="btn btn-success btn-sm" onclick="window.location.href = '${pageContext.request.contextPath}/product/add?id=${product.getId()}';">Add to shopping cart</button>
+                    <button class="btn btn-success btn-sm" onclick="window.location.href = '${pageContext.request.contextPath}/shopping_cart/add?id=${product.getId()}';">Add to shopping cart</button>
                 </td>
             </tr>
         </c:forEach>

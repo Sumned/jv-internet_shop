@@ -9,15 +9,17 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>All products page</h1>
+<div class="container-fluid">
+    <h1>Shopping Cart page</h1>
 <table border="1">
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Price</th>
         <th>Delete</th>
     </tr>
-    <jsp:useBean id="allProducts" scope="request" type="java.util.List"/>
-    <c:forEach var="product" items="${allProducts}">
+    <jsp:useBean id="Products" scope="request" type="java.util.List"/>
+    <c:forEach var="product" items="${Products}">
         <tr>
             <td>
                 <c:out value="${product.id}"/>
@@ -29,12 +31,15 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/product/delete?id=${product.getId()}">Delete</a>
+                <button class="btn btn-danger btn-sm" onclick="window.location.href = '${pageContext.request.contextPath}/shoppingCart/delete?id=${product.id}';">Delete</button>
             </td>
         </tr>
     </c:forEach>
-    <p><a href="${pageContext.request.contextPath}/addProduct">Add a new products</a></p>
-    <p><a href="${pageContext.request.contextPath}/">Back to the main page</a></p>
 </table>
+<form action="${pageContext.request.contextPath}/shopping_cart/complete_order" method="get">
+    <button type="submit" class="btn btn-success">Complete Order</button>
+</form>
+<p><a href="${pageContext.request.contextPath}/">Back to the main page</a></p>
+</div>
 </body>
 </html>

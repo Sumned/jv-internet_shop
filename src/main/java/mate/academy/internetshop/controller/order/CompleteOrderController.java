@@ -1,13 +1,11 @@
 package mate.academy.internetshop.controller.order;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
-import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.service.OrderService;
 import mate.academy.internetshop.service.ShoppingCartService;
@@ -25,8 +23,7 @@ public class CompleteOrderController extends HttpServlet {
             throws ServletException, IOException {
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
-        List<Product> products = shoppingCartService.getAllProducts(shoppingCart);
-        orderService.completeOrder(products, shoppingCart.getUser());
-        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
+        orderService.completeOrder(shoppingCart.getProducts(), shoppingCart.getUser());
+        resp.sendRedirect(req.getContextPath() + "/shopping_cart");
     }
 }

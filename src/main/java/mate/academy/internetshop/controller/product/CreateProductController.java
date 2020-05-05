@@ -12,13 +12,13 @@ import mate.academy.internetshop.service.ProductService;
 
 public class CreateProductController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
-    private ProductService productService =
+    private final ProductService productService =
             (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/addProduct.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/products/add.jsp").forward(req, resp);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class CreateProductController extends HttpServlet {
         String name = req.getParameter("name");
         BigDecimal price = new BigDecimal(req.getParameter("price"));
         productService.create(new Product(name, price));
-        resp.sendRedirect(req.getContextPath() + "/addProduct");
+        resp.sendRedirect(req.getContextPath() + "/products/add");
     }
 }
