@@ -5,7 +5,7 @@ import java.util.Set;
 import mate.academy.internetshop.db.Storage;
 
 public class User {
-    private long id;
+    private Long id;
     private String name;
     private String password;
     private String login;
