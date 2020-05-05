@@ -1,5 +1,7 @@
 package mate.academy.internetshop.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import mate.academy.internetshop.db.Storage;
 
 public class User {
@@ -7,6 +9,7 @@ public class User {
     private String name;
     private String password;
     private String login;
+    private Set<Role> roles = new HashSet<>();
 
     public User(String login, String password) {
         this.id = Storage.userId;
@@ -43,11 +46,25 @@ public class User {
         this.password = password;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addRoles(Role role) {
+        roles.add(role);
+    }
+
     @Override
     public String toString() {
         return "User{" + "id=" + id
                 + ", name='" + name
-                + '\'' + ", email='"
-                + password + '\'' + '}';
+                + '\'' + ", password='"
+                + password + '\'' + ", login='"
+                + login + '\'' + ", roles="
+                + roles + '}';
     }
 }
