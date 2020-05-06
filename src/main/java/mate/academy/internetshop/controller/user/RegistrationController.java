@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
+import mate.academy.internetshop.model.Role;
 import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.UserService;
 
@@ -27,7 +28,14 @@ public class RegistrationController extends HttpServlet {
         String passwordRepeat = req.getParameter("passwordRepeat");
 
         if (password.equals(passwordRepeat)) {
-            userService.create(new User(login, password));
+            User user = new User(login, password);
+            user.addRoles(Role.of("USER"));
+            System.out.println(user.getRoles().toString());
+            if (login.equals("admin")) {
+                user.addRoles(Role.of("ADMIN"));
+            }
+            System.out.println(user.getRoles().toString());
+            userService.create(user);
             resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Your password and repeat password aren't the same");

@@ -15,6 +15,7 @@
         <tr class="table-active">
             <th>ID</th>
             <th>Name</th>
+            <th>Role</th>
             <th>Delete</th>
         </tr>
         <jsp:useBean id="allUsers" scope="request" type="java.util.List"/>
@@ -25,6 +26,19 @@
                 </td>
                 <td>
                     <c:out value="${user.login}"/>
+                </td>
+                <td>
+                    <table border="1">
+                        <tr>
+                            <c:forEach var="role" items="${user.roles}">
+                        <tr>
+                            <td>
+                                <c:out value="${role.roleName}"/>
+                            </td>
+                        </tr>
+                        </c:forEach>
+                        </tr>
+                    </table>
                 </td>
                 <td>
                     <a href="${pageContext.request.contextPath}/user/delete?id=${user.id}">Delete</a>
