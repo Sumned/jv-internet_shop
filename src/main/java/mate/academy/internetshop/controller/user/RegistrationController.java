@@ -34,7 +34,6 @@ public class RegistrationController extends HttpServlet {
             if (login.equals("admin")) {
                 user.addRoles(Role.of("ADMIN"));
             }
-            System.out.println(user.getRoles().toString());
             userService.create(user);
             resp.sendRedirect(req.getContextPath() + "/login");
         } else {
