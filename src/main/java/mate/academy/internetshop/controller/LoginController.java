@@ -13,7 +13,6 @@ import mate.academy.internetshop.security.AuthenticationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 public class LoginController extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger(LoginController.class.getName());
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
