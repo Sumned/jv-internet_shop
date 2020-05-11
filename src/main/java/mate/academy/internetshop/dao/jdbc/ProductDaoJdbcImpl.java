@@ -18,8 +18,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product element) throws SQLException {
         String query = "INSERT INTO products (product_name, product_price) VALUES (?, ?);";
-        try(Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement =
+                    connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, element.getPrice());
             statement.executeUpdate();
@@ -44,7 +45,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-        throw new DataProcessingException("Unable to find product with id " + id);
+            throw new DataProcessingException("Unable to find product with id " + id);
         }
     }
 
@@ -66,7 +67,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product element) {
-        String query = "UPDATE products SET product_name = ?, product_price = ? WHERE product_id = ?";
+        String query = "UPDATE products SET product_name = ?,"
+                + " product_price = ? WHERE product_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(3, element.getId());
@@ -91,8 +93,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
         }
     }
 
-    public Product getProductFromResultSet (ResultSet rs) throws SQLException {
-        Product product = new Product(rs.getString("product_name"), rs.getBigDecimal("product_price"));
+    public Product getProductFromResultSet(ResultSet rs) throws SQLException {
+        Product product = new Product(rs.getString("product_name"),
+                rs.getBigDecimal("product_price"));
         product.setId(rs.getLong("product_id"));
         return product;
     }

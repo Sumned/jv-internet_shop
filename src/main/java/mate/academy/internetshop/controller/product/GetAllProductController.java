@@ -27,7 +27,8 @@ public class GetAllProductController extends HttpServlet {
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         for (Role role : userService.get(userId).getRoles()) {
             if (role.getRoleName().equals(Role.RoleName.ADMIN)) {
-                req.getRequestDispatcher("/WEB-INF/views/products/all_for_admin_only.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/views/products/all_for_admin_only.jsp")
+                        .forward(req, resp);
             } else {
                 req.getRequestDispatcher("/WEB-INF/views/products/all.jsp").forward(req, resp);
             }
