@@ -1,6 +1,7 @@
 package mate.academy.internetshop.controller.user;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +35,11 @@ public class RegistrationController extends HttpServlet {
             if (login.equals("admin")) {
                 user.addRoles(Role.of("ADMIN"));
             }
-            userService.create(user);
+            try {
+                userService.create(user);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Your password and repeat password aren't the same");

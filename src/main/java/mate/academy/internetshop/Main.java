@@ -1,6 +1,7 @@
 package mate.academy.internetshop;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Product;
@@ -14,11 +15,11 @@ import mate.academy.internetshop.service.UserService;
 public class Main {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         ProductService productService = (ProductService) INJECTOR.getInstance(ProductService.class);
         UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
         for (int i = 0; i < 10; i++) {
-            productService.create(new Product("Item" + i, new BigDecimal(i)));
+            productService.create(new Product("Item" + i+1, new BigDecimal(i)));
             userService.create(new User("User" + i, "user" + i + "@mail.com"));
         }
         System.out.println("All products list:");
@@ -58,6 +59,5 @@ public class Main {
         shoppingCartService.deleteProduct(shoppingCart1, item1);
         shoppingCartService.clear(shoppingCart2);
         System.out.println(shoppingCartService.getAllProducts(shoppingCart1));
-        OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
     }
 }

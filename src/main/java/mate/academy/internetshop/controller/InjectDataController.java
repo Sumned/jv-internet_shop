@@ -2,6 +2,7 @@ package mate.academy.internetshop.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,11 @@ public class InjectDataController extends HttpServlet {
             throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/views/inject_data.jsp").forward(req, resp);
         for (int i = 0; i < 10; i++) {
-            productService.create(new Product("Item" + i, new BigDecimal(10 + i * 3)));
+            try {
+                productService.create(new Product("Item" + i, new BigDecimal(10 + i * 3)));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
