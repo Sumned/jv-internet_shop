@@ -9,8 +9,7 @@ import mate.academy.internetshop.controller.LoginController;
 import org.apache.log4j.Logger;
 
 public class ConnectionUtil extends HttpServlet {
-    private static final String URL =
-            "jdbc:mysql://localhost:3306/internet_shop?serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost:3306/internet_shop?serverTimezone=UTC";
     private static final Logger LOGGER = Logger.getLogger(LoginController.class);
 
     static {
@@ -33,5 +32,4 @@ public class ConnectionUtil extends HttpServlet {
             LOGGER.error("Can't establish the connection to DB", e);
             throw new RuntimeException("Can't establish the connection to DB", e);
         }
-    }
-}
+    }}

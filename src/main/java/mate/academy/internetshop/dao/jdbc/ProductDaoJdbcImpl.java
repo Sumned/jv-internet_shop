@@ -16,11 +16,10 @@ import mate.academy.internetshop.util.ConnectionUtil;
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
     @Override
-    public Product create(Product element) {
+    public Product create(Product element) throws SQLException {
         String query = "INSERT INTO products (product_name, product_price) VALUES (?, ?);";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement =
-                    connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+        try(Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, element.getPrice());
             statement.executeUpdate();
@@ -29,7 +28,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             element.setId(resultSet.getLong(1));
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to create " + element.getName(), e);
+            throw new DataProcessingException("Unable to create " + element.getName());
         }
     }
 
@@ -45,7 +44,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to find product with id " + id, e);
+        throw new DataProcessingException("Unable to find product with id " + id);
         }
     }
 
@@ -60,15 +59,14 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 products.add(getProductFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Somethings gone wrong", e);
+            throw new DataProcessingException("Somethings gone wrong");
         }
         return products;
     }
 
     @Override
     public Product update(Product element) {
-        String query = "UPDATE products SET product_name = ?,"
-                + " product_price = ? WHERE product_id = ?";
+        String query = "UPDATE products SET product_name = ?, product_price = ? WHERE product_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(3, element.getId());
@@ -77,7 +75,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Update failed", e);
+            throw new DataProcessingException("Update failed");
         }
     }
 
@@ -89,20 +87,13 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setLong(1, id);
             return statement.executeUpdate() != 0;
         } catch (SQLException e) {
-            throw new DataProcessingException("Delete failed", e);
+            throw new DataProcessingException("Delete failed");
         }
     }
 
-    public Product getProductFromResultSet(ResultSet rs) {
-        Product product = null;
-        try {
-            product = new Product(rs.getString("product_name"),
-                    rs.getBigDecimal("product_price"));
-            product.setId(rs.getLong("product_id"));
-        } catch (SQLException e) {
-            throw new DataProcessingException("Unable to create", e);
-        }
-
+    public Product getProductFromResultSet (ResultSet rs) throws SQLException {
+        Product product = new Product(rs.getString("product_name"), rs.getBigDecimal("product_price"));
+        product.setId(rs.getLong("product_id"));
         return product;
     }
 }
