@@ -47,6 +47,14 @@
         <url-pattern>/products/all</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>allProductsForAdmin</servlet-name>
+        <servlet-class>mate.academy.internetshop.controller.product.GetAllProductToAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allProductsForAdmin</servlet-name>
+        <url-pattern>/products/all_to_admin</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>addProducts</servlet-name>
         <servlet-class>mate.academy.internetshop.controller.product.CreateProductController</servlet-class>
     </servlet>

@@ -30,7 +30,7 @@
                     <c:out value="${product.price}"/>
                 </td>
                 <td align="center" width="50">
-                    <button class="btn btn-danger btn-sm" onclick="window.location.href = '${pageContext.request.contextPath}/product/delete?id=${product.getId()}">DELETE</button>
+                    <button class="btn btn-danger btn-sm" onclick="window.location.href = '${pageContext.request.contextPath}/product/delete?id=${product.getId()}';">DELETE</button>
                 </td>
             </tr>
         </c:forEach>

@@ -1,14 +1,16 @@
 package mate.academy.internetshop.controller.product;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
+import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.ProductService;
 
-public class DeleteProductController extends HttpServlet {
+public class GetAllProductToAdminController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
     private final ProductService productService =
             (ProductService) INJECTOR.getInstance(ProductService.class);
@@ -16,9 +18,10 @@ public class DeleteProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String productId = req.getParameter("id");
-        Long id = Long.valueOf(productId);
-        productService.delete(id);
-        resp.sendRedirect(req.getContextPath() + "/products/all_to_admin");
+        List<Product> allProducts = productService.getAll();
+        req.setAttribute("allProducts", allProducts);
+        req.getRequestDispatcher("/WEB-INF/views/products/all_for_admin_only.jsp")
+                .forward(req, resp);
+
     }
 }
