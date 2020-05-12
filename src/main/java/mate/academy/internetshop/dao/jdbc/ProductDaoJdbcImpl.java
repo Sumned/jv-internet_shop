@@ -29,7 +29,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             element.setId(resultSet.getLong(1));
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to create " + element.getName());
+            throw new DataProcessingException("Unable to create " + element.getName(), e);
         }
     }
 
@@ -45,7 +45,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to find product with id " + id);
+            throw new DataProcessingException("Unable to find product with id " + id, e);
         }
     }
 
@@ -60,7 +60,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 products.add(getProductFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Somethings gone wrong");
+            throw new DataProcessingException("Somethings gone wrong", e);
         }
         return products;
     }
@@ -77,7 +77,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Update failed");
+            throw new DataProcessingException("Update failed", e);
         }
     }
 
@@ -89,7 +89,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setLong(1, id);
             return statement.executeUpdate() != 0;
         } catch (SQLException e) {
-            throw new DataProcessingException("Delete failed");
+            throw new DataProcessingException("Delete failed", e);
         }
     }
 
@@ -100,7 +100,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                     rs.getBigDecimal("product_price"));
             product.setId(rs.getLong("product_id"));
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to create");
+            throw new DataProcessingException("Unable to create", e);
         }
 
         return product;
