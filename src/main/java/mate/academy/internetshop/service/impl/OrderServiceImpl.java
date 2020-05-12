@@ -1,6 +1,5 @@
 package mate.academy.internetshop.service.impl;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import mate.academy.internetshop.dao.OrderDao;
@@ -21,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
     private ShoppingCartService shoppingCartService;
 
     @Override
-    public Order completeOrder(List<Product> products, User user) throws SQLException {
+    public Order completeOrder(List<Product> products, User user) {
         List<Product> productsCopy = new ArrayList<>(products);
         shoppingCartService.clear(shoppingCartService.getByUserId(user.getId()));
         return orderDao.create(new Order(user, productsCopy));
@@ -33,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order create(Order order) throws SQLException {
+    public Order create(Order order) {
         return orderDao.create(order);
     }
 

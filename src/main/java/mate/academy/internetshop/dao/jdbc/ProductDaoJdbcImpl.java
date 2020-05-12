@@ -16,7 +16,7 @@ import mate.academy.internetshop.util.ConnectionUtil;
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
     @Override
-    public Product create(Product element) throws SQLException {
+    public Product create(Product element) {
         String query = "INSERT INTO products (product_name, product_price) VALUES (?, ?);";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
@@ -93,10 +93,16 @@ public class ProductDaoJdbcImpl implements ProductDao {
         }
     }
 
-    public Product getProductFromResultSet(ResultSet rs) throws SQLException {
-        Product product = new Product(rs.getString("product_name"),
-                rs.getBigDecimal("product_price"));
-        product.setId(rs.getLong("product_id"));
+    public Product getProductFromResultSet(ResultSet rs) {
+        Product product = null;
+        try {
+            product = new Product(rs.getString("product_name"),
+                    rs.getBigDecimal("product_price"));
+            product.setId(rs.getLong("product_id"));
+        } catch (SQLException e) {
+            throw new DataProcessingException("Unable to create");
+        }
+
         return product;
     }
 }
