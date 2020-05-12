@@ -1,17 +1,22 @@
 package mate.academy.internetshop.controller.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.Role;
+import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.model.User;
+import mate.academy.internetshop.service.ShoppingCartService;
 import mate.academy.internetshop.service.UserService;
 
 public class RegistrationController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
+    private final ShoppingCartService shoppingCartService =
+            (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
     private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
@@ -30,7 +35,8 @@ public class RegistrationController extends HttpServlet {
         if (password.equals(passwordRepeat)) {
             User user = new User(login, password);
             user.addRoles(Role.of("USER"));
-            System.out.println(user.getRoles().toString());
+            ShoppingCart shoppingCart = new ShoppingCart(new ArrayList<>(), user);
+            shoppingCartService.create(shoppingCart);
             if (login.equals("admin")) {
                 user.addRoles(Role.of("ADMIN"));
             }
