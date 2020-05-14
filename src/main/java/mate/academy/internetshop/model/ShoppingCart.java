@@ -5,12 +5,12 @@ import mate.academy.internetshop.db.Storage;
 
 public class ShoppingCart {
     private List<Product> products;
-    private User user;
+    private Long userId;
     private Long id;
 
-    public ShoppingCart(List<Product> products, User user) {
+    public ShoppingCart(List<Product> products, Long userId) {
         this.products = products;
-        this.user = user;
+        this.userId = userId;
         this.id = Storage.shoppingCartId;
     }
 
@@ -22,12 +22,12 @@ public class ShoppingCart {
         this.products = products;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getId() {
@@ -42,7 +42,7 @@ public class ShoppingCart {
     public String toString() {
         return "ShoppingCart{" + "products="
                 + products + ", user="
-                + user + ", id="
+                + userId + ", id="
                 + id + '}';
     }
 }

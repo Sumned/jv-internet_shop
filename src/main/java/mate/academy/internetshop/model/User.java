@@ -2,7 +2,6 @@ package mate.academy.internetshop.model;
 
 import java.util.HashSet;
 import java.util.Set;
-import mate.academy.internetshop.db.Storage;
 
 public class User {
     private Long id;
@@ -12,7 +11,6 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     public User(String login, String password) {
-        this.id = Storage.userId;
         this.password = password;
         this.login = login;
         this.name = login;
@@ -28,6 +26,10 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

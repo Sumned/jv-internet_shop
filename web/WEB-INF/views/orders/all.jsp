@@ -13,7 +13,7 @@
 <table border="1">
     <tr>
         <th>ID</th>
-        <th>User</th>
+        <th>User_id</th>
         <th>Product list</th>
         <th>Delete</th>
     </tr>
@@ -24,7 +24,7 @@
                 <c:out value="${orders.id}"/>
             </td>
             <td>
-                <c:out value="${orders.user.name}"/>
+                <c:out value="${orders.getUserId()}"/>
             </td>
                 <td>
                 <table border="1">
