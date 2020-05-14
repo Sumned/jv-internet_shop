@@ -5,30 +5,25 @@ import mate.academy.internetshop.db.Storage;
 
 public class Order {
     private Long id;
-    private Long userId;
+    private User user;
     private List<Product> products;
 
-    public Order(List<Product> products, Long userId) {
+    public Order(User user, List<Product> products) {
         this.id = Storage.orderId;
+        this.user = user;
         this.products = products;
-        this.userId = userId;
-
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public User getUser() {
+        return user;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUser(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<Product> getProducts() {
@@ -42,7 +37,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" + "id=" + id
-                + ", user=" + userId
+                + ", user=" + user
                 + ", products="
                 + products + '}';
     }
