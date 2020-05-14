@@ -15,6 +15,7 @@
     <p><a href="${pageContext.request.contextPath}/products/all_to_admin">All products list for admin only</a></p>
     <p><a href="${pageContext.request.contextPath}/products/add">Add a new products</a></p>
     <p><a href="${pageContext.request.contextPath}/shopping_cart">Shopping cart</a></p>
+    <p><a href="${pageContext.request.contextPath}/orders/all">Orders</a></p>
     <p><a href="${pageContext.request.contextPath}/orders/user_all">All orders</a></p>
     <p><a href="${pageContext.request.contextPath}/logout">Exit</a></p>
   </div>

@@ -27,7 +27,6 @@ public class CreateProductController extends HttpServlet {
         String name = req.getParameter("name");
         BigDecimal price = new BigDecimal(req.getParameter("price"));
         productService.create(new Product(name, price));
-        productService.create(new Product(name, price));
         resp.sendRedirect(req.getContextPath() + "/products/add");
     }
 }

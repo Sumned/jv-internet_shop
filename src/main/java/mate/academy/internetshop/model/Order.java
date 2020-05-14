@@ -1,29 +1,32 @@
 package mate.academy.internetshop.model;
 
 import java.util.List;
-import mate.academy.internetshop.db.Storage;
 
 public class Order {
     private Long id;
-    private User user;
+    private Long userId;
     private List<Product> products;
 
-    public Order(User user, List<Product> products) {
-        this.id = Storage.orderId;
-        this.user = user;
+    public Order(List<Product> products, Long userId) {
         this.products = products;
+        this.userId = userId;
+
     }
 
     public Long getId() {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUser(Long userId) {
+        this.userId = userId;
     }
 
     public List<Product> getProducts() {
@@ -37,7 +40,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" + "id=" + id
-                + ", user=" + user
+                + ", user=" + userId
                 + ", products="
                 + products + '}';
     }

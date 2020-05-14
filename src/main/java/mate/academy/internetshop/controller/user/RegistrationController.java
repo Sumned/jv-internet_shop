@@ -35,12 +35,10 @@ public class RegistrationController extends HttpServlet {
         if (password.equals(passwordRepeat)) {
             User user = new User(login, password);
             user.addRoles(Role.of("USER"));
-            ShoppingCart shoppingCart = new ShoppingCart(new ArrayList<>(), user);
+            user = userService.create(user);
+            ShoppingCart shoppingCart = new ShoppingCart(new ArrayList<>(), user.getId());
             shoppingCartService.create(shoppingCart);
-            if (login.equals("admin")) {
-                user.addRoles(Role.of("ADMIN"));
-            }
-            userService.create(user);
+
             resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Your password and repeat password aren't the same");
