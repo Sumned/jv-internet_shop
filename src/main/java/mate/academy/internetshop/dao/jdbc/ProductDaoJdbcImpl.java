@@ -103,7 +103,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Unable to create", e);
         }
-
         return product;
     }
 }
