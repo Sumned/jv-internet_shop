@@ -18,7 +18,20 @@ import mate.academy.internetshop.util.ConnectionUtil;
 public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public List<Order> getUserOrders(Long userId) {
-        return null;
+        String query = "SELECT * FROM orders WHERE user_id = ?;";
+        List<Order> ordersUserAll = new ArrayList<>();
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement allStatement = connection.prepareStatement(query);
+            allStatement.setLong(1, userId);
+            ResultSet resultSet = allStatement.executeQuery();
+            while (resultSet.next()) {
+                ordersUserAll.add(get(resultSet.getLong("order_id")).get());
+            }
+
+        } catch (SQLException e) {
+            throw new DataProcessingException("Somethings gone wrong", e);
+        }
+        return ordersUserAll;
     }
 
     @Override
@@ -103,6 +116,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
+    @Override
     public boolean clear(Long id) {
         String query = "DELETE FROM order_products WHERE order_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -114,6 +128,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
+    @Override
     public Order getOrderFromResultSet(ResultSet rs) {
         Order order = null;
         try {

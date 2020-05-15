@@ -113,6 +113,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
+    @Override
     public ShoppingCart getShoppingCartFromResultSet(ResultSet rs) {
         ShoppingCart shoppingCart = null;
         try {
