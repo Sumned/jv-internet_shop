@@ -71,14 +71,15 @@ CREATE TABLE `shopping_carts_products`
 
 CREATE TABLE `users`
 (
-    `user_id`  bigint       NOT NULL AUTO_INCREMENT,
-    `name`     varchar(256) NOT NULL,
-    `login`    varchar(256) NOT NULL,
-    `password` varchar(256) NOT NULL,
+    `user_id`  bigint         NOT NULL AUTO_INCREMENT,
+    `name`     varchar(256)   NOT NULL,
+    `login`    varchar(256)   NOT NULL,
+    `password` varchar(256)   NOT NULL,
+    `salt`     varbinary(256) NOT NULL,
     PRIMARY KEY (`user_id`),
     UNIQUE KEY `login_UNIQUE` (`login`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 21
+  AUTO_INCREMENT = 27
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 

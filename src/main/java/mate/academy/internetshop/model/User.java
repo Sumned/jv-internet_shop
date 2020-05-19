@@ -7,6 +7,7 @@ public class User {
     private Long id;
     private String name;
     private String password;
+    private byte[] salt;
     private String login;
     private Set<Role> roles = new HashSet<>();
 
@@ -58,6 +59,14 @@ public class User {
 
     public void addRoles(Role role) {
         roles.add(role);
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 
     @Override
