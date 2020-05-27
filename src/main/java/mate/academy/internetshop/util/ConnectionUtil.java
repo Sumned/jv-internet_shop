@@ -23,7 +23,7 @@ public class ConnectionUtil extends HttpServlet {
 
     public static Connection getConnection() {
         Properties dbProperties = new Properties();
-        dbProperties.put("user", "Sumned");
+        dbProperties.put("user", "root");
         dbProperties.put("password", "1234");
         try {
             Connection connection = DriverManager.getConnection(URL, dbProperties);
