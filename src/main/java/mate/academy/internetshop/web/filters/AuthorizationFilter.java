@@ -24,7 +24,7 @@ public class AuthorizationFilter implements Filter {
     private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         protectedUrl.put("/users/all", List.of(Role.RoleName.ADMIN));
         protectedUrl.put("/orders/all/delete", List.of(Role.RoleName.ADMIN));
         protectedUrl.put("/orders/all", List.of(Role.RoleName.ADMIN));
