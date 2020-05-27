@@ -61,7 +61,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             PreparedStatement allStatement = connection.prepareStatement(query);
             ResultSet resultSet = allStatement.executeQuery();
             while (resultSet.next()) {
-                shoppingCartsAll.add(get(resultSet.getLong("card_id")).get());
+                shoppingCartsAll.add(get(resultSet.getLong("card_id")).orElseThrow());
             }
 
         } catch (SQLException e) {
@@ -115,7 +115,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
 
     @Override
     public ShoppingCart getShoppingCartFromResultSet(ResultSet rs) {
-        ShoppingCart shoppingCart = null;
+        ShoppingCart shoppingCart;
         try {
             List<Product> list = new ArrayList<>();
             shoppingCart = new ShoppingCart(list, rs.getLong("user_id"));

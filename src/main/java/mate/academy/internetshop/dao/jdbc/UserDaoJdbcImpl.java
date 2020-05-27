@@ -83,7 +83,7 @@ public class UserDaoJdbcImpl implements UserDao {
             PreparedStatement statement = connection.prepareStatement(allUserQuery);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                users.add(get(resultSet.getLong("user_id")).get());
+                users.add(get(resultSet.getLong("user_id")).orElseThrow());
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Somethings gone wrong", e);
@@ -122,7 +122,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User getUserFromResultSet(ResultSet rs) {
-        User user = null;
+        User user;
         try {
             user = new User(rs.getString("login"),
                     rs.getString("password"));
