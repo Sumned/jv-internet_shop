@@ -95,7 +95,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product getProductFromResultSet(ResultSet rs) {
-        Product product = null;
+        Product product;
         try {
             product = new Product(rs.getString("name"),
                     rs.getBigDecimal("price"));

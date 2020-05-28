@@ -25,7 +25,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             allStatement.setLong(1, userId);
             ResultSet resultSet = allStatement.executeQuery();
             while (resultSet.next()) {
-                ordersUserAll.add(get(resultSet.getLong("order_id")).get());
+                ordersUserAll.add(get(resultSet.getLong("order_id")).orElseThrow());
             }
 
         } catch (SQLException e) {
@@ -78,7 +78,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             PreparedStatement allStatement = connection.prepareStatement(query);
             ResultSet resultSet = allStatement.executeQuery();
             while (resultSet.next()) {
-                ordersAll.add(get(resultSet.getLong("order_id")).get());
+                ordersAll.add(get(resultSet.getLong("order_id")).orElseThrow());
             }
 
         } catch (SQLException e) {
@@ -130,7 +130,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Order getOrderFromResultSet(ResultSet rs) {
-        Order order = null;
+        Order order;
         try {
             List<Product> list = new ArrayList<>();
             order = new Order(list, rs.getLong("user_id"));

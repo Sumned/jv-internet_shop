@@ -23,7 +23,7 @@ public class CreateProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         String name = req.getParameter("name");
         BigDecimal price = new BigDecimal(req.getParameter("price"));
         productService.create(new Product(name, price));
