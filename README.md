@@ -38,6 +38,7 @@
         <li>jstl 1.2</li>
         <li>log4j 1.2.17</li>
         <li>maven-checkstyle-plugin</li>
+        <li>MySQL 8.0.20</li>
         </ul>
         <hr>
         <h1><a id="user-content-for-developer" class="anchor" aria-hidden="true" href="#for-developer"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a name="user-content-developer-start"></a>For developer</h1>
@@ -54,8 +55,7 @@
         <p>At mate.academy.interntetshop.src.main.java.Factory class use username and password for your DB to create a Connection.</p>
         <p>At mate.academy.interntetshop.src.main.java.resources.hibernate.cfg.xml configure Hibernate with correct username and password.</p>
         <p>Change a path in mate.academy.interntetshop.src.main.java.resources.log4j.properties. It has to reach your logFile.</p>
-        <p>Run the project.</p>
-        <p>By default there’s one user with a USER and ADMIN role (login = admin, password = admin).</p>
+        <p>Run the project. Register new user and add to him admin role in MySQL.</p>        
         <hr>
         <h1><a id="user-content-authors" class="anchor" aria-hidden="true" href="#authors"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a name="user-content-authors"></a>Authors</h1>
         <ul>
